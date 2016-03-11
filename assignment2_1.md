@@ -228,10 +228,9 @@ $$\begin{align*}
 \end{align*}$$
 
 
-![*Notes:* The survivor function does not go to zero by the end of the
-time frame.](gr_1 "Headline1")
+![](gr_1 "Headline1")
 
-![*Notes:* And since it makes fun, I will add one more, with a different width](gr_2 "Headline 2")
+![](gr_2 "Headline 2")
 
 ![Figure](images/quality1.png)
 
