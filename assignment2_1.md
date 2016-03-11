@@ -228,9 +228,9 @@ $$\begin{align*}
 \end{align*}$$
 
 
-![](gr_1 "Headline1")
+![](gr_1.png)
 
-![](gr_2 "Headline 2")
+![](gr_2.png)
 
 ![Figure](images/quality1.png)
 
