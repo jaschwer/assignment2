@@ -232,7 +232,7 @@ $$\begin{align*}
 
 ![](gr_2.png)
 
-![Figure](images/quality1.png)
+![](images/quality1.png)
 
 ![A nice woooooow meme](http://pl.memgenerator.pl/mem-image/wooooooow-pl-ffffff-2)
 
