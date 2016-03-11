@@ -1,6 +1,6 @@
 Assignment 2 in Methods: 
 
-Using parts of old assignments:
+Using parts of old assignments from latex. I first converted the assignments to .md and then used parts of them and played with it. I hope it is okay that I do not include all the latex-files I used as a source. I read this option to late.
 
 Question 1 
 ==========
