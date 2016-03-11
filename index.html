@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="buttondown.css" type="text/css" />
+</head>
+<body>
+<p>Assignment 2 in Methods:</p>
+<p>Using parts of old assignments:</p>
+<h1 id="question-1">Question 1</h1>
+<h2 id="a">a</h2>
+<p><span>eststo: reg lnc lnp lny, cluster(state)</span><br />
+Results can be seen in Table 1</p>
+<h2 id="b">b</h2>
+<p><span>quietly tab year, gen(period)</span><br />
+<span>eststo: xtreg lnc lnp lny period*,fe cluster(state)</span><br />
+<span>eststo: reg d.lnc d.lnp d.lny d.period*, cluster(state)</span><br />
+<span>xtserial lnc lnp lny</span><br />
+<br /><span class="math display">$$\begin{aligned}
+lnC_{it}= \alpha + \beta_{1}lnP_{it} + \beta_{2}lnY_{it} + \gamma_{2} D_{2i}+... + \gamma_{46} D_{46i}+ \delta_{1} T1_{t} + ...+ \delta_{29} T29_{t}+u_{it}\end{aligned}$$</span><br /> In order to account for time effects dummy variables (T1-T29) for each but one year are included. To include state effects there are several options. Firstly dummy variables (D2-D46) for each state can be added to the regression. Equivalently, a fixed effect within transformation can be applied to get rid of unobserved state-specific effects. If the state-specific effects can be argued to be uncorrelated with the included regressors, a random effects model can be estimated. In fact, the Hausmann test does no reject the RE model. Since the RE model yields very similar estimates we will stick with the FE model for comparative purposes.<br />
+<br />
+Given that smoking is an addiction it is plausible that there might be serial correlation, which is confirmed by a test for serial correlation in the residuals obtained from the FD regression. Given substantial serial correlation, the FD regression should generally be preferred.<br />
+</p>
+<h2 id="e">e</h2>
+<p><span>eststo: xtreg lnc lnp lny period* gln*, cluster(state)</span><br />
+<span>eststo: reg d.lnc d.lnp d.lny d.period* d.gln*, cluster(state)</span><br />
+As argued in the paper by Baltagi &amp; Li (1999) when modelling the demand of cigarettes it is appropriate to take into account spatial correlation across states due to border effect purchases. Further, interaction between states can result in correlated outcome. Over this suggests that the error terms are correlated across states. To account for this correlation amongst states, interaction variables that reflect endogenous and exogenous interaction effects can be added to the regression.<br />
+<br />
+Endogenous effects suggest that the demand of a state is influenced by its neighbours’ outcomes. We are trying to capture this effect by including <span class="math inline"><em>g</em><em>l</em><em>n</em><em>c</em></span>, which, for each individual state, represents the average cigarette demand of those other states it is related to as determined by the matrix <span class="math inline"><em>D</em></span>. This effect is likely to be endogenous as there is a feedback process taking place between neighbours, since links between states should be reciprocal given the spatial weight matrix. However, only the final outcome of the feedback process will be measured and it is impossible to differentiate the causal affect of a particular state <span class="math inline"><em>j</em></span> on <span class="math inline"><em>i</em></span> and vice versa. In order to make out this causal impact instrumental variables are a solution. Availability of instrumental variables is determined by the existence of intransitive triads in the network structure. As each individual state has its own group that it interacts with, it should be possible to find a state k that is related to state j but not i such that <span class="math inline"><em>G</em><sub><em>i</em><em>k</em></sub> = 0</span> and <span class="math inline"><em>G</em><sub><em>i</em><em>j</em></sub> ⋅ <em>G</em><sub><em>j</em><em>k</em></sub> &gt; 0</span>. Exogenous characteristics of this state <span class="math inline"><em>k</em></span> can then be used as an instrument for <span class="math inline"><em>j</em></span> and thus the causal effect of <span class="math inline"><em>j</em></span> on <span class="math inline"><em>i</em></span> can be isolated.<br />
+<br />
+With instrumental variables, it is also possible to differentiate exogenous from endogenous effects and thus to break the reflection problem. Exogenous interaction effects refer to correlated outcomes as <span class="math inline"><em>j</em></span>’s socioeconomic characteristics impact on <span class="math inline"><em>i</em></span>’s outcome, vice versa.</p>
+<h1 id="question-2">Question 2</h1>
+<h2 id="a-1">a</h2>
+<p><br /><span class="math display">$$\begin{aligned}
+lnC_{it}= \alpha + \beta_{1}lnP_{it} + \beta_{2}lnY_{it} + \gamma_{2} D_{2i}+... + \gamma_{46} D_{46i}+ \delta_{1} T1_{t} + ...+ \delta_{29} T29_{t}+u_{it}\end{aligned}$$</span><br /></p>
+<p><br /><span class="math display">$$\begin{aligned}
+&amp; E[y_{i} | a^{l}_{i}=0, s_{i}=0] = \alpha - \gamma \frac{\pi_{0}}{\pi_{2}}\\
+&amp; E[y_{i} | a^{l}_{i}=0, s_{i}=1] = \alpha - \gamma \frac{\pi_{0}}{\pi_{2}} + \beta - \frac{1}{\pi_{2}} (\gamma \pi_{1} + \tau (\pi_{0}+\pi_{1}) ) \\
+&amp; E[y_{i} | a^{l}_{i}=1, s_{i}=0] = \alpha - \gamma \frac{\pi_{0}}{\pi_{2}}+\frac{\gamma}{\pi_{2}}\\
+&amp; E[y_{i} | a^{l}_{i}=1, s_{i}=1] = \alpha + \beta - \frac{1}{\pi_{2}}(\gamma (\pi_{0}+(\pi_{1}-1)+\tau(\pi_{0}+\pi_{1}-1))\\
+\end{aligned}$$</span><br /></p>
+<h2 id="b-1">b</h2>
+<p><br /><span class="math display">$$\begin{aligned}
+&amp; E[y_{i} | a^{l}_{i}=0, s_{i}=1] - E[y_{i} | a^{1}_{i}=0, s_{i}=0]  = \beta - \gamma \frac{\pi_{1}}{\pi_{2}}-\frac{\tau}{\pi_{2}}(\pi_{0}+\pi_{1}) \\
+&amp; \text{If }\pi_{0} = \pi_{1} = 0, \\
+&amp; E[y_{i} | a^{l}_{i}=0, s_{i}=1] - E[y_{i} | a^{1}_{i}=0, s_{i}=0]  = \beta - \gamma \frac{0}{\pi_{2}}-\frac{\tau}{\pi_{2}}(0+0) = \beta \\
+\end{aligned}$$</span><br /></p>
+<p>Proxy controls partially account for OVB, which is the main reason for including them in a regression. Yet, they are simultaneously determined by the regressor of interest. This is also the case in our example where late ability is causally related to the omitted variable ability, which is meant to represent, yet it is equally a function of the regressor high school education. Including proxy controls will thus lead to biased estimates as highlighted by the equations in part a (though this bias might be an improvement over the bias present when not at all accounting for OVB). The restriction suggests that the proxy variable late ability is neither causally affected by high school education, so it is not itself an intermediate outcome, nor is it subject to a general shift which would be reflected in the constant. Instead, this assumption implies that the proxy variable late ability is purely a function of the latent variable, ability <span class="math inline"><em>a</em><sub><em>i</em></sub></span>, that we are trying to capture with it. Given this assumption it is possible to identify the direct effect of completed high school education on future earnings.</p>
+<p><br /><span class="math display">$$\begin{aligned}
+ \text{If }-\frac{\tau}{\gamma}=\frac{\pi_{1}}{\pi_{0}+\pi_{1}} \Rightarrow -\tau = \frac{\gamma \pi_{1}}{\pi_{0}+\pi_{1}} \\
+ E(y_{i} | \alpha^{l}_{i} = 0, s_{i} = 1) - E(y_{i} | \alpha^{l}_{i} = 0, s_{i} = 0)
+&amp; = \beta - \gamma \frac{\pi_{1}}{\pi_{2}}+ \frac{\gamma \pi_{1}}{\pi_{0}+\pi_{1}} \cdot \frac{\pi_{0}+\pi_{1}}{\pi_{2}}  \\
+&amp; = \beta - \gamma \frac{\pi_{1}}{\pi_{2}} + \gamma \frac{\pi_{1}}{\pi_{2}} \\ &amp; = \beta\end{aligned}$$</span><br /></p>
+<h1 id="question-3---extra">Question 3 - extra</h1>
+<p>Let's see what nice more math and pictures I can find:</p>
+<p><br /><span class="math display">$$\begin{aligned}
+&amp; max \; u_1(x) \text{ s.t. } p_1 x_1 + p_2 x_2 \le w_1 \\
+&amp; L (x_1, x_2, p_1, p_2, w_1) = x_1^{3/4} x_2^{1/4} - \lambda (p_1 x_1 + p_2 x_2 - w_1) \\
+&amp;\text{FOC} \\
+&amp; \frac{{\partial}L}{{\partial}x_1} =  \frac{3}{4} x_1^{-1/4} x_2^{1/4} - \lambda p_1 = 0 \\
+&amp; \frac{{\partial}L}{{\partial}x_2} =  \frac{1}{4} x_1^{3/4} x_2^{-3/4} - \lambda p_2 = 0 \\
+&amp; \frac{{\partial}L}{{\partial}x_1} /  \frac{{\partial}L}{{\partial}x_2}: = \frac{ \frac{3}{4} x_1^{-1/4} x_2^{1/4} }{ \frac{1}{4} x_1^{3/4} x_2^{-3/4}} = \frac{ \lambda p_1}{  \lambda p_2} \\
+&amp; \iff  3 x_1^{-1} x_2 = \frac{ p_1}{  p_2} \\
+&amp; \iff  x_2 = \frac{ x_1 p_1}{ 3 p_2}, \quad x_1 = \frac{  x_2 p_2 3}{   p_1} \\ 
+&amp;p_1 x_1 + p_2 x_2 = w_1 \iff p_1 x_1 + p_2 \frac{ x_1 p_1}{ 3 p_2} = w_1 \\
+&amp;\iff p_1 x_1 + \frac{ x_1 p_1}{ 3 } = w_1 \\
+&amp;\iff x_1( 1 + \frac{ 1}{ 3 }) = \frac{w_1}{p_1} \\
+&amp;\iff x_1 = \frac{3 w_1}{4 p_1} = x_{1,1}\text{ , }  (x_{good, consumer})\\\end{aligned}$$</span><br /> <br /><span class="math display">$$\begin{aligned}
+&amp;p_1 x_1 + p_2 x_2 = w_1 \iff p_1 \frac{  x_2 p_2 3}{   p_1} + p_2 x_2 = w_1 \\
+&amp; \iff x_2 = \frac{w_1}{4 p_2} = x_{2,1}\text{ , }  (x_{good, consumer})\end{aligned}$$</span><br /></p>
+<p><br /><span class="math display">$$\begin{aligned}
+&amp; max \; u_1(x) \text{ s.t. } p_1 x_1 + p_2 x_2 \le w_1 \\
+&amp; L (x_1, x_2, p_1, p_2, w_1) = x_1^{3/4} x_2^{1/4} - \lambda (p_1 x_1 + p_2 x_2 - w_1) \\
+&amp;\text{FOC} \\
+&amp; \frac{{\partial}L}{{\partial}x_1} =  \frac{3}{4} x_1^{-1/4} x_2^{1/4} - \lambda p_1 = 0 \\
+&amp; \frac{{\partial}L}{{\partial}x_2} =  \frac{1}{4} x_1^{3/4} x_2^{-3/4} - \lambda p_2 = 0 \\
+&amp; \frac{{\partial}L}{{\partial}x_1} /  \frac{{\partial}L}{{\partial}x_2}: = \frac{ \frac{3}{4} x_1^{-1/4} x_2^{1/4} }{ \frac{1}{4} x_1^{3/4} x_2^{-3/4}} = \frac{ \lambda p_1}{  \lambda p_2} \\
+&amp; \iff  3 x_1^{-1} x_2 = \frac{ p_1}{  p_2} \\
+&amp; \iff  x_2 = \frac{ x_1 p_1}{ 3 p_2}, \quad x_1 = \frac{  x_2 p_2 3}{   p_1} \\ 
+&amp;p_1 x_1 + p_2 x_2 = w_1 \iff p_1 x_1 + p_2 \frac{ x_1 p_1}{ 3 p_2} = w_1 \\
+&amp;\iff p_1 x_1 + \frac{ x_1 p_1}{ 3 } = w_1 \\
+&amp;\iff x_1( 1 + \frac{ 1}{ 3 }) = \frac{w_1}{p_1} \\
+&amp;\iff x_1 = \frac{3 w_1}{4 p_1} = x_{1,1}\text{ , }  (x_{good, consumer})\\\end{aligned}$$</span><br /> <br /><span class="math display">$$\begin{aligned}
+&amp;p_1 x_1 + p_2 x_2 = w_1 \iff p_1 \frac{  x_2 p_2 3}{   p_1} + p_2 x_2 = w_1 \\
+&amp; \iff x_2 = \frac{w_1}{4 p_2} = x_{2,1}\text{ , }  (x_{good, consumer})\end{aligned}$$</span><br /></p>
+<hr />
+<p>(i)<br />
+<span class="math inline"><em>D</em><sub><em>p</em></sub><em>x</em><sub><em>i</em></sub>(<em>p</em>, <em>w</em><sub><em>i</em></sub>)</span> is negative semidefinite if <span class="math inline"><em>x</em><sub><em>i</em></sub>(<em>p</em>, <em>w</em><sub><em>i</em></sub>)</span> satisfies ULD.<br />
+Hence, if <span class="math inline">(<em>p</em>′−<em>p</em>)[<em>x</em><sub><em>i</em></sub>(<em>p</em>′,<em>w</em><sub><em>i</em></sub>)−<em>x</em><sub><em>i</em></sub>(<em>p</em>, <em>w</em><sub><em>i</em></sub>)] ≤ 0</span>, <span class="math inline"><em>x</em><sub><em>i</em></sub>(<em>p</em>, <em>w</em><sub><em>i</em></sub>)</span> satisfies ULD.<br />
+Let <span class="math inline">(<em>p</em>′−<em>p</em>)=[0, ..., 0, <em>p</em>′<sub><em>i</em></sub> − <em>p</em><sub><em>i</em></sub>, 0, ..., 0]=<em>d</em><em>p</em> &gt; 0</span> and <span class="math inline">∃<em>ϵ</em>,  <em>d</em><em>p</em> &lt; <em>ϵ</em> ∀ <em>ϵ</em></span>.<br />
+Then, we have <span class="math inline">$(p'-p) [x_i(p',w_i) - x_i(p,w_i)] = dp' \frac{{\partial}x_i(p, w_i)}{{\partial}p_i} dp \le 0$</span>.<br />
+Hence <span class="math inline"><em>D</em><sub><em>p</em></sub><em>x</em><sub><em>i</em></sub>(<em>p</em>, <em>w</em><sub><em>i</em></sub>)</span> is negative semidefinite <span class="math inline">∀<em>p</em></span><br />
+(ii)<br />
+Show that <span class="math inline"><em>x</em><sub><em>i</em></sub>(<em>p</em>, <em>w</em><sub><em>i</em></sub>)</span> satisfies the uncompensated law of demand if <span class="math inline"><em>D</em><sub><em>p</em></sub><em>x</em><sub><em>i</em></sub>(<em>p</em>, <em>w</em><sub><em>i</em></sub>)</span> is negative definite <span class="math inline">∀<em>p</em></span>.<br />
+Let <span class="math inline"><em>p</em>(<em>λ</em>)=(1 − <em>λ</em>)<em>p</em> + <em>λ</em><em>p</em>′&gt;<em>p</em>,  <em>λ</em> ∈ (0, 1)</span><br />
+---------</p>
+<p>The question ask to transfer initial income, here denoted by the numeraire <span class="math inline"><em>m</em></span>, so that the product of the utilities is maximized. <br /><span class="math display">$$\begin{aligned}
+&amp;\max \Pi_{i=1}^4 u_i \quad s.t. \sum_{i=1}^4 u_i = 130 \\
+&amp;L = (m_1 + 2 \cdot 1\sqrt{x_1})(m_2 + 2 \cdot 2\sqrt{x_2})(m_3 + 2 \cdot 3\sqrt{x_3})(m_4 + 2 \cdot 4\sqrt{x_4}) \\ &amp;- \lambda (m_1 + m_2 + m_3 +m_4 - 100) \\
+&amp;FOC \text{ (everything with equality because we know that everybody consumes)}: \\
+&amp;\frac{{\partial}L}{{\partial}m_1} := (m_2 + 2 \cdot 2\sqrt{x_2})(m_3 + 2 \cdot 3\sqrt{x_3})(m_4 + 2 \cdot 4\sqrt{x_4}) - \lambda = 0 \\
+&amp;\frac{{\partial}L}{{\partial}m_2} := (m_1 + 2 \cdot 1\sqrt{x_1})(m_3 + 2 \cdot 3\sqrt{x_3})(m_4 + 2 \cdot 4\sqrt{x_4}) - \lambda = 0 \\
+&amp;\frac{{\partial}L}{{\partial}m_3} := (m_2 + 2 \cdot 2\sqrt{x_2})(m_1 + 2 \cdot 1\sqrt{x_1})(m_4 + 2 \cdot 4\sqrt{x_4}) - \lambda = 0 \\
+&amp;\frac{{\partial}L}{{\partial}m_4} := (m_2 + 2 \cdot 2\sqrt{x_2})(m_3 + 2 \cdot 3\sqrt{x_3})(m_1 + 2 \cdot 1\sqrt{x_1}) - \lambda = 0 \\
+&amp;\frac{{\partial}L}{{\partial}\lambda} := m_1 + m_2 + m_3 +m_4 - 100 = 0 \\
+&amp;\frac{{\partial}L / {\partial}m_1}{{\partial}L / {\partial}m_2} = \frac{m_2 + 2 \cdot 2\sqrt{x_2}}{m_1 + 2 \cdot 1\sqrt{x_1}} = 1 \iff m_2 + 2 \cdot 2\sqrt{x_2} = m_1 + 2 \cdot 1\sqrt{x_1}\\
+&amp;\text{We further get: } \\
+&amp; m_1 + 2 \cdot 1\sqrt{x_1} = m_2 + 2 \cdot 2\sqrt{x_2} = m_3 + 2 \cdot 3\sqrt{x_3} = m_4 + 2 \cdot 4\sqrt{x_4}\end{aligned}$$</span><br /> The calculation of the individual <span class="math inline"><em>i</em></span>’s choice of <span class="math inline"><em>x</em></span> does not depend on the numeraire in the first subsection, so I use this results here. <br /><span class="math display">$$\begin{aligned}
+&amp; m_1 + 2 = m_2 + 8 = m_3 + 18 = m_4 + 32\end{aligned}$$</span><br /> Initially, the distribution of the numeraire was given by: <br /><span class="math display">$$\begin{aligned}
+m_1 = 10,\; m_2 = 20, \; m_3 = 30,\; m_4 = 40 \end{aligned}$$</span><br /> Now endowments have to be changed so that the condition in equation (1) holds: <br /><span class="math display">$$\begin{aligned}
+m^n_1 = 38,\; m^n_2 = 32, \; m^n_3 = 22,\; m^n_4 = 8 \end{aligned}$$</span><br /> Then, the amount of taxes is just the difference between the initial <span class="math inline"><em>m</em><sub><em>i</em></sub></span> and the nash bargaining <span class="math inline"><em>m</em><sub><em>i</em></sub><sup><em>n</em></sup></span>: <br /><span class="math display">$$\begin{aligned}
+tax_1 = m_1 - m_1^n = -28, \; tax_2 = m_2 - m_2^n = -12 , \\ tax_3 = m_3 - m_3^n = 8 \\
+, \; tax_4 = m_4 - m_4^n = -32 \end{aligned}$$</span><br /> Negative taxes mean that the individual obtains money and positives taxes mean that the individual has to pay taxes.<br />
+We than get <br /><span class="math display">$$\begin{aligned}
+W^n(u^n_i) = \Pi_{i=1}^4 (u^n_i)^{\alpha_i} = (m_1^n + 2)^{\alpha_1}(m_2^n + 8)^{\alpha_2}(m_3^n + 18)^{\alpha_3}(m_4^n + 32)^{\alpha_4} = 40 &gt; 37.44\end{aligned}$$</span><br /></p>
+<hr />
+<p>Partial derivatives of the expenditure function with respect to prices<br />
+<br /><span class="math display">$$\begin{aligned}
+&amp;h_{1}(p,u) = \frac{{\partial}e(p,w)}{{\partial}{p_{1}}} = \frac{u}{2} \\
+&amp;h_{2}(p,u) = \frac{{\partial}e(p,w)}{{\partial}{p_{2}}} = u \\
+&amp;\rightarrow  h(p,u) = \left(\begin{array}{c}  \frac{u}{2} \\ u \end{array} \right)\end{aligned}$$</span><br /></p>
+<div class="figure">
+<img src="gr_1" alt="Notes: The survivor function does not go to zero by the end of the time frame. This is due to censoring at the right. Some people still did not find a new job." style="width:90.0%" />
+<p class="caption"><em>Notes:</em> The survivor function does not go to zero by the end of the time frame. This is due to censoring at the right. Some people still did not find a new job.</p>
+</div>
+<div class="figure">
+<img src="gr_2" alt="Notes: And since it makes fun, I will add one more, with a different width" style="width:50.0%" />
+<p class="caption"><em>Notes:</em> And since it makes fun, I will add one more, with a different width</p>
+</div>
+<div class="figure">
+<img src="http://pl.memgenerator.pl/mem-image/wooooooow-pl-ffffff-2" />
+
+</div>
+</body>
+</html>
