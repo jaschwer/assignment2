@@ -228,9 +228,9 @@ $$\begin{align*}
 \end{align*}$$
 
 
-![](gr_1.png)
+![](images/gr_1.png)
 
-![](gr_2.png)
+![](images/gr_2.png)
 
 ![](images/quality1.png)
 
