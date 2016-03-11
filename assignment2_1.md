@@ -224,7 +224,8 @@ Partial derivatives of the expenditure function with respect to prices\
 $$\begin{align*}
 &h_{1}(p,u) = \frac{{\partial}e(p,w)}{{\partial}{p_{1}}} = \frac{u}{2} \\
 &h_{2}(p,u) = \frac{{\partial}e(p,w)}{{\partial}{p_{2}}} = u \\
-&\rightarrow  h(p,u) = \left(\begin{array}{c}  \frac{u}{2} \\ u \end{array} \right)\end{align*}$$
+&\rightarrow  h(p,u) = \left(\begin{array}{c}  \frac{u}{2} \\ u \end{array} \right)
+\end{align*}$$
 
 
 ![*Notes:* The survivor function does not go to zero by the end of the
