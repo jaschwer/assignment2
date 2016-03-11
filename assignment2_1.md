@@ -233,9 +233,7 @@ not find a new job.](gr_1 "Headline1"){width="90.00000%"}
 
 ![*Notes:* And since it makes fun, I will add one more, with a different width](gr_2 "Headline 2"){width="50.00000%"}
 
-![A nice figure](https://github.com/jaschwer/assignment2/blob/gh-pages/gr_1.pdf)
-
-![A nice figure](https://github.com/jaschwer/assignment2/blob/gh-pages/gr_1.png)
+![Figure](images/quality1.png)
 
 ![A nice woooooow meme](http://pl.memgenerator.pl/mem-image/wooooooow-pl-ffffff-2)
 
