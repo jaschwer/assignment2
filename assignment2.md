@@ -234,6 +234,7 @@ not find a new job.](gr_1){width="90.00000%"}
 
 ![*Notes:* And since it makes fun, I will add one more, with a different width](gr_2){width="50.00000%"}
 
+
 ![](http://pl.memgenerator.pl/mem-image/wooooooow-pl-ffffff-2)
 
 

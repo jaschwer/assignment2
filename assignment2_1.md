@@ -226,15 +226,14 @@ $$\begin{align*}
 &h_{2}(p,u) = \frac{{\partial}e(p,w)}{{\partial}{p_{2}}} = u \\
 &\rightarrow  h(p,u) = \left(\begin{array}{c}  \frac{u}{2} \\ u \end{array} \right)\end{align*}$$
 
-![la lune](gr1_pdf "Voyage to the moon")
-![la lune](gr1_png "Voyage to the moon")
-
 
 ![*Notes:* The survivor function does not go to zero by the end of the
 time frame. This is due to censoring at the right. Some people still did
 not find a new job.](gr_1 "Headline1"){width="90.00000%"}
 
 ![*Notes:* And since it makes fun, I will add one more, with a different width](gr_2 "Headline 2"){width="50.00000%"}
+
+![A nice figure](https://github.com/jaschwer/assignment2/blob/gh-pages/gr_1.pdf)
 
 ![A nice woooooow meme](http://pl.memgenerator.pl/mem-image/wooooooow-pl-ffffff-2)
 
